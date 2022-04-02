@@ -4,10 +4,10 @@
 This automation test suite is setup for search and result feature for Bunnnings website.
 
 ## **setup**
-Java version "1.8.0_321"
-Gradle version "7.4.2"
-Selenium Webdriver
-Junit version "4.13"
+- Java version "1.8.0_321"
+- Gradle version "7.4.2"
+- Selenium Webdriver
+- Junit version "4.13"
 
 ## **Module**
 This project consists of main Package "BunningsPortal". 
