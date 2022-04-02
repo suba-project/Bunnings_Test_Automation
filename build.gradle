@@ -1,0 +1,40 @@
+defaultTasks 'clean', 'test', 'build'
+apply plugin: 'java'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+}
+
+
+buildscript {
+    repositories {
+        mavenLocal()
+          }
+}
+
+
+dependencies {
+    testImplementation("commons-io:commons-io:2.6",
+            "junit:junit:4.13",
+            "org.junit.jupiter:junit-jupiter-engine:5.1.1",
+            "io.rest-assured:rest-assured:3.1.1",
+            "org.assertj:assertj-core:3.8.0",
+            "org.seleniumhq.selenium:selenium-api:3.14.0",
+            "org.seleniumhq.selenium:selenium-support:3.14.0",
+            "org.seleniumhq.selenium:selenium-chrome-driver:3.14.0",
+            "org.seleniumhq.selenium:selenium-firefox-driver:3.14.0",
+            "io.github.bonigarcia:webdrivermanager:3.3.0")
+
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        testLogging.showStandardStreams = true
+        systemProperties System.getProperties()
+    }
+    gradle.startParameter.continueOnFailure = true
+}
