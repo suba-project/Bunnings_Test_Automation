@@ -16,4 +16,4 @@ It has another subPackage "pageObject" which consists of all page classes
 
 ## **Run**
 Run the command to build the project and run all the test cases
-./gradlew clean build 
+- ./gradlew clean build 
