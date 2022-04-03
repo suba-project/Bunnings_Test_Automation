@@ -6,18 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class HomePage extends UIAutomationBase {
 
     WebDriver driver;
-    private static HomePage homePage;
-
-
-    public WebElement getSearchTextBox() {
-        return searchTextBox;
-    }
 
     @FindBy(id = "custom-css-outlined-input")
     private WebElement searchTextBox;
@@ -25,8 +18,8 @@ public class HomePage extends UIAutomationBase {
     @FindBy(xpath = "//*[@id=\"header-search\"]/button")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//*[@id=\"header-search\"]/label/div")
-    private WebElement searchTextMessage;
+    @FindBy(id = "crossIcon")
+    private WebElement crossButton;
 
     @FindBy(xpath = "//*[@id=\"flyout\"]/div/div/div/div[1]/div/div[2]/div[1]/span")
     private WebElement spanSearch;
@@ -39,17 +32,12 @@ public class HomePage extends UIAutomationBase {
         PageFactory.initElements(driver, this);
     }
 
+    public WebElement getSearchTextBox() {
+        return searchTextBox;
+    }
+
     private void setSearchTextBox(String searchValue) {
         searchTextBox.sendKeys(searchValue);
-    }
-
-    public WebElement getSearchButton() {
-
-        return searchButton;
-    }
-
-    private void submitButton(WebElement element) {
-        element.submit();
     }
 
     public void searchItemFromAutoSuggestion() {
@@ -76,9 +64,12 @@ public class HomePage extends UIAutomationBase {
         System.out.println("Test Passed");
     }
 
-    public void searchTextMessageDisappearsUponClicking() {
-        assertTrue(searchTextMessage.isDisplayed());
+    public void popularSearchesCloseTestAndAssert() {
+        setSearchTextBox(" ");
+        crossButton.click();
+        assertFalse(crossButton.isSelected());
+        System.out.println("Popular Searches has been closed successfully");
+        System.out.println("Test Passed");
     }
-
 
 }
